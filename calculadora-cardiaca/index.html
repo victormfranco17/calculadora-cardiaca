@@ -1,0 +1,108 @@
+<html>
+<head>
+<style>
+  .container {
+    width: 80%;
+    margin: auto;
+    font-family: Arial, sans-serif;
+  }
+
+  .title {
+    text-align: center;
+    font-size: 36px;
+    color: #333;
+  }
+
+  .form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .form-group {
+    width: 48%;
+    margin-bottom: 10px;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 18px;
+    color: #666;
+  }
+
+  .form-input {
+    display: block;
+    width: 100%;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+  }
+
+  .form-button {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .result {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<h1 class="title">Calculadora de frecuencia cardíaca máxima</h1>
+<form class="form" id="heart-rate-form">
+<div class="form-group">
+<label class="form-label" for="age">Edad (años)</label>
+<input class="form-input" type="number" id="age" name="age" min="0" required>
+</div>
+<div class="form-group">
+<button class="form-button" type="submit" id="calculate">Calcular</button>
+</div>
+</form>
+<p class="result" id="result"></p>
+</div>
+<script>
+// Get the form element
+var form = document.getElementById("heart-rate-form");
+
+// Add an event listener to the form submit
+form.addEventListener("submit", function(event) {
+  // Prevent the default form submit action
+  event.preventDefault();
+
+  // Get the form input value
+  var age = Number(document.getElementById("age").value);
+
+  // Validate the input value
+  if (age <= 0) {
+    // Show an alert message if the input is invalid
+    alert("Por favor, ingresa un valor válido para la edad.");
+    return;
+  }
+
+  // Calculate the maximum heart rate using the formula of Tanaka et al.
+  var maxHeartRate = Math.round(208 - (0.7 * age));
+
+  // Get the result element
+  var result = document.getElementById("result");
+
+  // Display the result in the result element
+  result.textContent = "Tu frecuencia cardíaca máxima es de " + maxHeartRate + " latidos por minuto.";
+});
+</script>
+</body>
+</html>
